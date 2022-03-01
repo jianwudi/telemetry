@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = "./";
+import "gnmi.proto";
+package telemetry2;
+
+service Telemetry {
+    rpc publish(stream gnmi.SubscribeResponse) returns (TelemetryStreamResponse) {};
+}
+
+
+message TelemetryStreamResponse {}
+
