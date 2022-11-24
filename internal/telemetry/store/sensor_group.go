@@ -111,7 +111,7 @@ func (t *SensorGroupTable) GetNextRecord(val *SensorGroupEntry) (*SensorGroupEnt
 				break
 			}
 		} else {
-			break
+			return curRecP.value, nil
 		}
 	}
 	return nil, errors.New("SensorGroupTable GetNextRecord fail")

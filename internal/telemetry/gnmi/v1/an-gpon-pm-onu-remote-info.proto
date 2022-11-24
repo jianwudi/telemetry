@@ -1,0 +1,40 @@
+syntax = "proto3";
+package an_gpon_pm_onu_remote_info;
+option go_package = "./v1";
+message GponPmOnuRemoteInfos {
+    message GponPmOnuRemoteInfo {
+        //ONU���ƣ���ʽ��v_ani.f.s.p.onuid
+        string name = 1 [json_name = "name"];
+        //����FECУ���ֽ���
+        uint64 ds_fec_corrected_bytes = 2 [json_name = "ds-fec-corrected-bytes"];
+        //����FECУ��code words��
+        uint64 ds_fec_corrected_words = 3 [json_name = "ds-fec-corrected-words"];
+        //����FEC����У��code words��
+        uint64 ds_fec_uncorrected_words = 4 [json_name = "ds-fec-uncorrected-words"];
+        //���н���code words����
+        uint64 ds_total_rx_code_words = 5 [json_name = "ds-total-rx-code-words"];
+        //����FECУ��ʱ��
+        uint32 ds_fec_seconds = 6 [json_name = "ds-fec-seconds"];
+        //ONU���յ�GEM HEC������
+        uint64 xgpon_gem_hec_error_count = 7 [json_name = "xgpon-gem-hec-error-count"];
+        //������XG-PON GEM֡��
+        uint64 xgpon_gem_key_error_count = 8 [json_name = "xgpon-gem-key-error-count"];
+        //�ڴ������ʣ���λ%
+        uint32 mem_occup = 9 [json_name = "mem-occup"];
+        //CPU�����ʣ���λ%
+        uint32 cpu_occup = 10 [json_name = "cpu-occup"];
+        //CPU���¶ȣ���λ��
+        int32 cpu_temp = 11 [json_name = "cpu-temp"];
+        //ONU PON�ڷ��ͱ��ĸ���
+        uint64 onu_pon_send_packets = 12 [json_name = "onu-pon-send-packets"];
+        //ONU PON�ڽ��ձ��ĸ���
+        uint64 onu_pon_recv_packets = 13 [json_name = "onu-pon-recv-packets"];
+        //ONU PON�ڽ��ձ��Ĵ������
+        uint64 onu_pon_recv_errors_packets = 14 [json_name = "onu-pon-recv-errors-packets"];
+        //ONU����TCONT���ж�������
+        uint64 tcont_queue_dropped_packets = 15 [json_name = "tcont-queue-dropped-packets"];
+        //ONU����TCONT����ת��������
+        uint64 tcont_queue_passing_packets = 16 [json_name = "tcont-queue-passing-packets"];
+    }
+    repeated GponPmOnuRemoteInfo gpon_pm_onu_remote_info = 1 [json_name = "gpon-pm-onu-remote-info"];
+}

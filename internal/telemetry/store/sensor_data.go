@@ -9,9 +9,9 @@ import (
 
 type SensorDataEntry struct {
 	SensorPath      string
-	SubscriptionIds []uint32
-	Data            []*TelemetryData
-	Interval        uint32
+	SubscriptionIds []string
+	Data            []interface{}
+	//	Interval        uint32
 }
 type SensorDataRecord struct {
 	next  *SensorDataRecord
@@ -115,7 +115,8 @@ func (t *SensorDataTable) GetNextRecord(val *SensorDataEntry) (*SensorDataEntry,
 				break
 			}
 		} else {
-			break
+			sensorDataMutex.Unlock()
+			return curRecP.value, nil
 		}
 	}
 	sensorDataMutex.Unlock()

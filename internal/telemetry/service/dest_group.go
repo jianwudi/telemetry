@@ -15,24 +15,42 @@ type destGroupService struct {
 	db *store.Datastore
 }
 
-var _DestGroupSrv = (*destGroupService)(nil)
+var _ DestGroupSrv = (*destGroupService)(nil)
 
 func NewDestGroupService(s *service) *destGroupService {
 	return &destGroupService{s.store}
 }
 
 func (s *destGroupService) Create(destgrp *store.DestGroupEntry) error {
+
 	err := s.db.DestGroup().CreateRecord(destgrp)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
 func (s *destGroupService) Delete(destgrp *store.DestGroupEntry) error {
-	err := s.db.DestGroup().DelRecord(destgrp)
-	if err != nil {
-		return err
+	if destgrp.DestIp == 0 && destgrp.DestPort == 0 {
+		for {
+			dstgrptmp, err := s.db.DestGroup().GetNextRecord(&store.DestGroupEntry{
+				DestGroupId: destgrp.DestGroupId,
+			})
+			if err == nil {
+				err = s.db.DestGroup().DelRecord(dstgrptmp)
+				if err != nil {
+					return err
+				}
+			} else {
+				break
+			}
+		}
+	} else {
+		err := s.db.DestGroup().DelRecord(destgrp)
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }

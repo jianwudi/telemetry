@@ -1,0 +1,38 @@
+syntax = "proto3";
+package an_gpon_pm_onu_line_quality;
+option go_package = "./v1";
+message GponPmOnuLineQualitys {
+    message GponPmOnuLineQuality {
+        //ONU���ƣ���ʽ��v_ani.f.s.p.onuid
+        string name = 1 [json_name = "name"];
+        //OLT��Ը�ONU��֡��ʧָʾ��LOFi��Loss of Frame of one specific ONU���澯������GPON ONU��Ч��XGPON ONU��֧��
+        uint32 lofi_alarm_count = 2 [json_name = "lofi-alarm-count"];
+        //ONU���ߺ�����֡������������GPON ONU��Ч��XGPON ONU��֧��
+        uint32 dowi_alarm_count = 3 [json_name = "dowi-alarm-count"];
+        //ONU���ߺ�����֡������������GPON ONU��Ч��XGPON ONU��֧��
+        uint32 upstream_delimiter_error_count = 4 [json_name = "upstream-delimiter-error-count"];
+        //OLT����������֡���ؽ�����żУ����������GPON/XGPON ONU��Ч��
+        uint64 upstream_bip_error_count = 5 [json_name = "upstream-bip-error-count"];
+        //����֡���ؽ�����żУ����������GPON ONU��Ч��XGPON ONU��֧�֡���Counter��Ȼ��ONU���⣬��GPONЭ����ͨ��
+        //REI PLOAM��Ϣ�ϴ���ʵ��������OLT��REI��Ϣ�еĲ���ֵ�����ۼƣ���ONU���޶�ӦOMCI MIB����ͳ�ơ���˽��ò���
+        //����������ݡ�
+        uint64 downstream_bip_error_count = 6 [json_name = "downstream-bip-error-count"];
+        //OLT����������ǰ�������FEC��Forward Error Correction���������������GPON/XGPON ONU��Ч��
+        uint64 upstream_fec_block = 7 [json_name = "upstream-fec-block"];
+        //OLT����������FEC����δ����������GPON/XGPON ONU��Ч��
+        uint64 upstream_fec_error_block = 8 [json_name = "upstream-fec-error-block"];
+        //���н���code words����,GPON/XGPON ONU��Ч
+        uint64 upstream_fec_total_block = 9 [json_name = "upstream-fec-total-block"];
+        //����FECУ���ֽ�����GPON/XGPON ONU��Ч
+        uint64 upstream_fec_byte = 10 [json_name = "upstream-fec-byte"];
+        //OLT������������ͷ��������루HEC��Header Error Code��У����������GPON/XGPON ONU��Ч
+        uint64 upstream_hec_error_count = 11 [json_name = "upstream-hec-error-count"];
+        //����GEM֡����GPON/XGPON ONU��Ч
+        uint64 upstream_gem_count = 12 [json_name = "upstream-gem-count"];
+        //ONU LOSi�澯������GPON/XGPON ONU��Ч
+        uint32 losi_alarm_count = 13 [json_name = "losi-alarm-count"];
+        //ONU DGi�澯������GPON/XGPON ONU��Ч
+        uint32 dgi_alarm_count = 14 [json_name = "dgi-alarm-count"];
+    }
+    repeated GponPmOnuLineQuality gpon_pm_onu_line_quality = 1 [json_name = "gpon-pm-onu-line-quality"];
+}

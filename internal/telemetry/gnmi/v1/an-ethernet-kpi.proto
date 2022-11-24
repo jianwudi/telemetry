@@ -1,0 +1,56 @@
+syntax = "proto3";
+package an_ethernet_kpi;
+option go_package = "./v1";
+message EthernetPortKpiRecords {
+    message EthernetPortKpiRecord {
+        //ethernetCsmacd.f.s.p
+        string name = 1 [json_name = "name"];
+        //��̫�ӿڷ��͵��ֽ���
+        uint64 port_tx_bytes = 2 [json_name = "port-tx-bytes"];
+        //��̫�ӿڽ��յ��ֽ���
+        uint64 port_rx_bytes = 3 [json_name = "port-rx-bytes"];
+        //��̫�ӿڷ��͵�֡��
+        uint64 port_tx_packets = 4 [json_name = "port-tx-packets"];
+        //��̫�ӿڽ��յ�֡��
+        uint64 port_rx_packets = 5 [json_name = "port-rx-packets"];
+        //��̫�ӿڷ��ͷ�������֡����һ����MAC��У������֡��
+        uint64 port_tx_discard_packets = 6 [json_name = "port-tx-discard-packets"];
+        //��̫�ӿڽ��շ�������֡����һ����MAC��У������֡��
+        uint64 port_rx_discard_packets = 7 [json_name = "port-rx-discard-packets"];
+        //��̫�ӿڽ��յĶ�������֡��
+        uint64 port_rx_alignment_error_packets = 8 [json_name = "port-rx-alignment-error-packets"];
+        //��̫�ӿڷ��ͷ����CRC����֡��
+        uint64 port_tx_crc_error_packets = 9 [json_name = "port-tx-crc-error-packets"];
+        //��̫�ӿڽ��շ����CRC����֡��
+        uint64 port_rx_crc_error_packets = 10 [json_name = "port-rx-crc-error-packets"];
+        //��̫�ӿڷ��͵ĳ���֡��
+        uint64 port_tx_oversized_packets = 11 [json_name = "port-tx-oversized-packets"];
+        //��̫�ӿڽ��յĳ���֡��
+        uint64 port_rx_oversized_packets = 12 [json_name = "port-rx-oversized-packets"];
+        //��̫�ӿڷ��͵ĳ���֡�� ��֡��С��64����CRC��ȷ�İ���)
+        uint64 port_tx_undersized_packets = 13 [json_name = "port-tx-undersized-packets"];
+        //��̫�ӿڽ��յĳ���֡��
+        uint64 port_rx_undersized_packets = 14 [json_name = "port-rx-undersized-packets"];
+        //��̫�ӿڷ��͵ķ�Ƭ֡�� (֡��С��64����CRC����İ���)
+        uint64 port_tx_fragment_packets = 15 [json_name = "port-tx-fragment-packets"];
+        //��̫�ӿڽ��յķ�Ƭ֡��
+        uint64 port_rx_fragment_packets = 16 [json_name = "port-rx-fragment-packets"];
+        //��̫�ӿڷ��͵�Jabber֡��
+        uint64 port_tx_jabber_packets = 17 [json_name = "port-tx-jabber-packets"];
+        //��̫�ӿڽ��յ�Jabber֡��
+        uint64 port_rx_jabber_packets = 18 [json_name = "port-rx-jabber-packets"];
+        //��̫�ӿڷ��͵Ĵ���֡��
+        uint64 port_tx_error_packets = 19 [json_name = "port-tx-error-packets"];
+        //��̫�ӿڽ��յĴ���֡��
+        uint64 port_rx_error_packets = 20 [json_name = "port-rx-error-packets"];
+        //��̫�˿�����ƽ�����ʣ���λkbps
+        uint64 port_tx_rate = 21 [json_name = "port-tx-rate"];
+        //��̫�˿�����ƽ�����ʣ���λkbps
+        uint64 port_rx_rate = 22 [json_name = "port-rx-rate"];
+        //��̫�˿������뼶��ֵ���ʣ���λkbps
+        uint64 port_tx_peak_rate = 23 [json_name = "port-tx-peak-rate"];
+        //��̫�˿������뼶��ֵ���ʣ���λkbps
+        uint64 port_rx_peak_rate = 24 [json_name = "port-rx-peak-rate"];
+    }
+    repeated EthernetPortKpiRecord ethernet_port_kpi_record = 1 [json_name = "ethernet-port-kpi-record"];
+}

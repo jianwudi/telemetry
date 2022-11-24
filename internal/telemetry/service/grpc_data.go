@@ -33,7 +33,7 @@ func (s *grpcDataService) GetALL() error {
 		log.Infof("data:%+v", data)
 	}
 	for {
-		grpcdata, err := s.db.GrpcDataGroup().GetNextRecord(grpcdata)
+		grpcdata, err = s.db.GrpcDataGroup().GetNextRecord(grpcdata)
 		if err != nil {
 			return nil
 		}

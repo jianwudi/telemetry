@@ -1,0 +1,18 @@
+syntax = "proto3";
+package an_gpon_pm_onu_traffic;
+option go_package = "./v1";
+message GponPmOnuTraffics {
+    message GponPmOnuTraffic {
+        //ONU���ƣ���ʽ��v_ani.f.s.p.ONUid
+        string name = 1 [json_name = "name"];
+        //ONU����ƽ�����ʣ���λkbps
+        uint32 tx_rate = 2 [json_name = "tx-rate"];
+        //ONU����ƽ�����ʣ���λkbps
+        uint32 rx_rate = 3 [json_name = "rx-rate"];
+        //ONU�����뼶��ֵ���ʣ���λkbps
+        uint32 tx_peak_rate = 4 [json_name = "tx-peak-rate"];
+        //ONU�����뼶��ֵ���ʣ���λkbps
+        uint32 rx_peak_rate = 5 [json_name = "rx-peak-rate"];
+    }
+    repeated GponPmOnuTraffic gpon_pm_onu_traffic = 1 [json_name = "gpon-pm-onu-traffic"];
+}

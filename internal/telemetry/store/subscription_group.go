@@ -8,7 +8,7 @@ import (
 )
 
 type SubscriptionGroupEntry struct {
-	SubscriptionId uint32
+	SubscriptionId string
 	SensorGroupId  string
 	DestGroupId    string
 	Interval       uint32
@@ -36,25 +36,25 @@ func NewSubscriptionGroup() *SubscriptionGroupTable {
 }
 
 func (t *SubscriptionGroupTable) Compare(leftCmpP *SubscriptionGroupEntry, rightCmpP *SubscriptionGroupEntry) int {
-	if leftCmpP.SubscriptionId > rightCmpP.SubscriptionId {
+	if strings.Compare(leftCmpP.SubscriptionId, rightCmpP.SubscriptionId) > 0 {
 		return 1
 	}
-	if leftCmpP.SubscriptionId < rightCmpP.SubscriptionId {
+	if strings.Compare(leftCmpP.SubscriptionId, rightCmpP.SubscriptionId) < 0 {
 		return -1
 	}
-	if strings.Compare(leftCmpP.SensorGroupId, rightCmpP.SensorGroupId) > 0 {
-		return 1
-	}
-	if strings.Compare(leftCmpP.SensorGroupId, rightCmpP.SensorGroupId) < 0 {
-		return -1
-	}
+	/* 	if strings.Compare(leftCmpP.SensorGroupId, rightCmpP.SensorGroupId) > 0 {
+	   		return 1
+	   	}
+	   	if strings.Compare(leftCmpP.SensorGroupId, rightCmpP.SensorGroupId) < 0 {
+	   		return -1
+	   	}
 
-	if strings.Compare(leftCmpP.DestGroupId, rightCmpP.DestGroupId) > 0 {
-		return 1
-	}
-	if strings.Compare(leftCmpP.DestGroupId, rightCmpP.DestGroupId) < 0 {
-		return -1
-	}
+	   	if strings.Compare(leftCmpP.DestGroupId, rightCmpP.DestGroupId) > 0 {
+	   		return 1
+	   	}
+	   	if strings.Compare(leftCmpP.DestGroupId, rightCmpP.DestGroupId) < 0 {
+	   		return -1
+	   	} */
 	return 0
 }
 func (t *SubscriptionGroupTable) CreateRecord(val *SubscriptionGroupEntry) error {
@@ -119,7 +119,7 @@ func (t *SubscriptionGroupTable) GetNextRecord(val *SubscriptionGroupEntry) (*Su
 				break
 			}
 		} else {
-			break
+			return curRecP.value, nil
 		}
 	}
 	return nil, errors.New("SubscriptionGroupEntry GetNextRecord fail")

@@ -1,0 +1,37 @@
+syntax = "proto3";
+package an_gpon_pm_onu_local_info;
+option go_package = "./v1";
+message GponPmOnuLocalInfos {
+    message GponPmOnuLocalInfo {
+        //ONU���ƣ���ʽ��v_ani.f.s.p.onuid
+        string name = 1 [json_name = "name"];
+        //OLT��ģ����յ�ONU�Ĺ⹦�ʣ���λ��0.01dBm
+        int32 olt_rx_power = 2 [json_name = "olt-rx-power"];
+        //����ʱ������λ��
+        uint32 online_duration = 3 [json_name = "online-duration"];
+        //���һ������ʱ�䣬��1970�꿪ʼ������
+        uint32 last_down_time = 4 [json_name = "last-down-time"];
+        //���һ������ԭ��
+        //The value (0) indicates that the reason is unknown��
+        //The value (1) indicates that the reason is LOS(Loss of signal)��
+        //The value (2) indicates that the reason is LOSi(Loss of signal for ONUi) or LOBi (Loss of burst for ONUi)��
+        //The value (3) indicates that the reason is LOFI(Loss of frame of ONUi)��
+        //The value (4) indicates that the reason is SFI(Signal fail of ONUi)��
+        //The value (5) indicates that the reason is LOAI(Loss of acknowledge with ONUi)��
+        //The value (6) indicates that the reason is LOAMI(Loss of PLOAM for ONUi)��
+        //The value (7) indicates that the reason is deactive ONT fails��
+        //The value (8) indicates that the reason is deactive ONT success��
+        //The value (9) indicates that the reason is reset ONT��
+        //The value (10) indicates that the reason is re-register ONT��
+        //The value (11) indicates that the reason is pop up fail��
+        //The value (13) indicates that the reason is dying-gasp��
+        //The value (15) indicates that the reason is LOKI(Loss of key synch with ONUi)��
+        //The value (18) indicates that the reason is deactived ONT due to the ring��
+        //The value (30) indicates that the reason is shut down ONT optical module��
+        //The value (255) indicates that the query fails.
+        uint32 last_down_cause = 5 [json_name = "last-down-cause"];
+        //ONU״̬��1-online��2-offline��255-invalid
+        uint32 onu_status = 6 [json_name = "onu-status"];
+    }
+    repeated GponPmOnuLocalInfo gpon_pm_onu_local_info = 1 [json_name = "gpon-pm-onu-local-info"];
+}

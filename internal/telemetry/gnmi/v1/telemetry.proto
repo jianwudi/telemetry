@@ -1,0 +1,26 @@
+syntax = "proto3"; //proto�汾����Ϊv3�汾��
+package telemetry; //��������Ϊtelemetry��
+message Telemetry { //telemetry��Ϣ�ṹ���塣
+    string node_id_str = 1; //�豸��hostname��Ϊ�豸�������е�Ψһ��ʶ���û����������޸ģ�GPB����ʱ����Ϊ1��
+    string subscription_id_str = 2; //�������ƣ���̬���ö���ʱ�Ķ������ƣ�GPB����ʱ����Ϊ2��
+    string sensor_path = 3; //����·����GPB����ʱ����Ϊ3��
+    uint64 collection_id = 4; //��ʶ�����ִΣ�GPB����ʱ����Ϊ4��
+    uint64 collection_start_time = 5; //��ʶ�����ִο�ʼʱ�䣬GPB����ʱ����Ϊ5��
+    uint64 msg_timestamp = 6; //���ɱ���Ϣ��ʱ�����GPB����ʱ����Ϊ6��
+    TelemetryGPBTable data_gpb = 7; //���ص����ݣ���TelemetryGPBTable���壬GPB����ʱ����Ϊ7��
+    uint64 collection_end_time = 8; //��ʶ�����ִν���ʱ�䣬GPB����ʱ����Ϊ8��
+    uint32 current_period = 9; //�������ȣ���λ�Ǻ��룬GPB����ʱ����Ϊ9��
+    string except_desc = 10; //�쳣������Ϣ�������쳣ʱ�����ϱ��쳣��Ϣ��GPB����ʱ����Ϊ10��
+    string product_name = 11; //��Ʒ��̬��
+    Encoding encoding = 12; //���ݱ��롣ΪGPBʱ��data_gpb�ֶ���Ч������ʱdata_str�ֶ���Ч
+    enum Encoding {
+        Encoding_GPB = 0;
+    };
+}
+message TelemetryGPBTable { //TelemetryGPBTable��Ϣ�ṹ���塣
+    repeated TelemetryRowGPB row = 1; //���鶨�壬��ʶ������TelemetryRowGPB�ṹ���ظ���GPB����ʱ����Ϊ1��
+}
+message TelemetryRowGPB {
+    uint64 timestamp = 1; //������ǰʵ����ʱ�����GPB����ʱ����Ϊ1��
+    bytes content = 11; //���صĲ���ʵ�����ݣ�GPB����ʱ����Ϊ11����Ҫ���sensor_path�ֶΣ��ſ����жϴ˴������ĸ�proto�ļ����롣
+}

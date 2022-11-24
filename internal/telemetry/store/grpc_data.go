@@ -1,22 +1,23 @@
 package store
 
 import (
+	"strings"
 	"sync"
 
-	"telemetry/internal/telemetry/gnmi"
+	v1 "telemetry/internal/telemetry/gnmi/v1"
 
 	"github.com/marmotedu/errors"
 	"google.golang.org/grpc"
 )
 
 type GrpcDataEntry struct {
-	SubscriptionId uint32
+	SubscriptionId string
 	Conns          []*grpc.ClientConn
-	Client         []gnmi.TelemetryClient
+	Client         []v1.GRPCDataserviceClient
 	SensorPath     []string
-	Data           []*TelemetryData
+	Data           []interface{}
 	Interval       uint32
-	Count		   uint32
+	Count          uint32
 }
 
 type GrpcDataRecord struct {
@@ -41,10 +42,10 @@ func NewGrpcData() *GrpcDataTable {
 }
 
 func (t *GrpcDataTable) Compare(leftCmpP *GrpcDataEntry, rightCmpP *GrpcDataEntry) int {
-	if leftCmpP.SubscriptionId > rightCmpP.SubscriptionId {
+	if strings.Compare(leftCmpP.SubscriptionId, rightCmpP.SubscriptionId) > 0 {
 		return 1
 	}
-	if leftCmpP.SubscriptionId < rightCmpP.SubscriptionId {
+	if strings.Compare(leftCmpP.SubscriptionId, rightCmpP.SubscriptionId) < 0 {
 		return -1
 	}
 	return 0
@@ -111,7 +112,7 @@ func (t *GrpcDataTable) GetNextRecord(val *GrpcDataEntry) (*GrpcDataEntry, error
 				break
 			}
 		} else {
-			break
+			return curRecP.value, nil
 		}
 	}
 	return nil, errors.New("GrpcDataEntry GetNextRecord fail")

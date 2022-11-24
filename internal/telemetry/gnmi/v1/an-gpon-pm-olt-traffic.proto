@@ -1,0 +1,75 @@
+syntax = "proto3";
+package an_gpon_pm_olt_traffic;
+option go_package = "./v1";
+message GponPmOltTraffics {
+    message GponPmOltTraffic {
+        //�˿�ID���ƣ���ʽ��gpon.f.s.p
+        string name = 1 [json_name = "name"];
+        //GPON�˿ڷ��͵���̫֡�ֽ���
+        uint64 port_tx_bytes = 2 [json_name = "port-tx-bytes"];
+        //GPON�˿ڽ��յ���̫֡�ֽ���
+        uint64 port_rx_bytes = 3 [json_name = "port-rx-bytes"];
+        //GPON�˿ڷ��͵���̫֡��
+        uint64 port_tx_pkt = 4 [json_name = "port-tx-pkt"];
+        //GPON�˿ڽ��յ���̫֡��
+        uint64 port_rx_pkt = 5 [json_name = "port-rx-pkt"];
+        //GPON�˿����ж��ж���ͳ��
+        uint64 port_tx_discard_pkt = 6 [json_name = "port-tx-discard-pkt"];
+        //GPON�˿ڿڽ��շ���������̫֡����һ����MAC��У������֡��
+        uint64 port_rx_discard_pkt = 7 [json_name = "port-rx-discard-pkt"];
+        //GPON�˿ڽ��շ������̫֡CRC����֡��
+        uint64 port_rx_crc_error_pkt = 8 [json_name = "port-rx-crc-error-pkt"];
+        //GPON�˿ڽ��շ���������̫֡����֡��
+        uint64 port_rx_oversized_discard_pkt = 9 [json_name = "port-rx-oversized-discard-pkt"];
+        //GPON�˿ڽ��շ���������̫֡����֡��
+        uint64 port_rx_undersized_discard_pkt = 10 [json_name = "port-rx-undersized-discard-pkt"];
+        //GPON�˿ڽ��յ���̫֡����֡��
+        uint64 port_rx_error_pkt = 11 [json_name = "port-rx-error-pkt"];
+        //GPON�˿�����ƽ�����ʣ���λkbps
+        uint32 port_tx_rate = 12 [json_name = "port-tx-rate"];
+        //GPON�˿�����ƽ�����ʣ���λkbps
+        uint32 port_rx_rate = 13 [json_name = "port-rx-rate"];
+        //GPON�˿������뼶��ֵ���ʣ���λkbps
+        uint32 port_tx_peak_rate = 14 [json_name = "port-tx-peak-rate"];
+        //GPON�˿������뼶��ֵ���ʣ���λkbps
+        uint32 port_rx_peak_rate = 15 [json_name = "port-rx-peak-rate"];
+        }
+        repeated GponPmOltTraffic pm_olt_traffic = 1 [json_name = "gpon-pm-olt-traffic"];
+        }
+        message GponPmOltChannelTraffic {
+        message GponPmOltChannelTraffic {
+        //�˿�ID���ƣ���ʽ��gpon.f.s.p
+        string name = 1 [json_name = "name"];
+        //ͨ����
+        uint32 channel = 2 [json_name = "channel"];
+        //GPON�˿ڷ��͵���̫֡�ֽ���
+        uint64 port_tx_bytes = 3 [json_name = "port-tx-bytes"];
+        //GPON�˿ڽ��յ���̫֡�ֽ���
+        uint64 port_rx_bytes = 4 [json_name = "port-rx-bytes"];
+        //GPON�˿ڷ��͵���̫֡��
+        uint64 port_tx_pkt = 5 [json_name = "port-tx-pkt"];
+        //GPON�˿ڽ��յ���̫֡��
+        uint64 port_rx_pkt = 6 [json_name = "port-rx-pkt"];
+        //GPON�˿����ж��ж���ͳ��
+        uint64 port_tx_discard_pkt = 7 [json_name = "port-tx-discard-pkt"];
+        //GPON�˿ڿڽ��շ���������̫֡����һ����MAC��У������֡��
+        uint64 port_rx_discard_pkt = 8 [json_name = "port-rx-discard-pkt"];
+        //GPON�˿ڽ��շ������̫֡CRC����֡��
+        uint64 port_rx_crc_error_pkt = 9 [json_name = "port-rx-crc-error-pkt"];
+        //GPON�˿ڽ��շ���������̫֡����֡��
+        uint64 port_rx_oversized_discard_pkt = 10 [json_name = "port-rx-oversized-discard-pkt"];
+        //GPON�˿ڽ��շ���������̫֡����֡��
+        uint64 port_rx_undersized_discard_pkt = 11 [json_name = "port-rx-undersized-discard-pkt"];
+        //GPON�˿ڽ��յ���̫֡����֡��
+        uint64 port_rx_error_pkt = 12 [json_name = "port-rx-error-pkt"];
+        //GPON�˿�����ƽ�����ʣ���λkbps
+        uint32 port_tx_rate = 13 [json_name = "port-tx-rate"];
+        //GPON�˿�����ƽ�����ʣ���λkbps
+        uint32 port_rx_rate = 14 [json_name = "port-rx-rate"];
+        //GPON�˿������뼶��ֵ���ʣ���λkbps
+        uint32 port_tx_peak_rate = 15 [json_name = "port-tx-peak-rate"];
+        //GPON�˿������뼶��ֵ���ʣ���λkbps
+        uint32 port_rx_peak_rate = 16 [json_name = "port-rx-peak-rate"];
+    }
+    repeated GponPmOltChannelTraffic pm_olt_channel_traffic =1 [json_name = "gpon-pm-olt-channel-traffic"];
+}

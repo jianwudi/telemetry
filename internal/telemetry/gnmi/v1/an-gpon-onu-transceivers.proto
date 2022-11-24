@@ -1,0 +1,24 @@
+syntax = "proto3";
+package an_gpon_onu_transceivers;
+option go_package = "./v1";
+message GponOnuTransceivers {
+    message GponOnuTransceiver {
+        //ONU���ƣ���ʽ��v-ani.f.s.p.onuid
+        string name = 1 [json_name = "name"];
+        //���չ⹦�ʣ���λ0.01dBm
+        int32 optical_unit_rx_power = 2 [json_name = "optical-unit-rx-power"];
+        //���͹⹦�ʣ���λ0.01dBm
+        int32 optical_unit_tx_power = 3 [json_name = "optical-unit-tx-power"];
+        //�˿ڵ�ƫ�õ����� ��λ��0.01mA��
+        int32 optical_unit_laser_bias_current = 4 [json_name = "optical-unit-laser-bias-current"];
+        //��ģ�鵱ǰ���¶ȣ���λ��0.01�档
+        int32 optical_unit_temperature = 5 [json_name = "optical-unit-temperature"];
+        //��ģ�鵱ǰ�ĵ�ѹ����λ�ǣ�0.01V��
+        int32 optical_unit_voltage = 6 [json_name = "optical-unit-voltage"];
+        //��ģ������,0:unknown,1:gpon,2:xg-pon,3:xgs-pon,4:gpon-and-xgpon,5:gpon-and-xgspon,-1:invalid
+        int32 module_type = 7 [json_name = "module-type"];
+        //��ģ��������
+        string module_sub_type = 8 [json_name = "module-sub-type"];
+    }
+    repeated GponOnuTransceiver gpon_onu_transceiver = 1 [json_name = "gpon-onu-transceiver"];
+}

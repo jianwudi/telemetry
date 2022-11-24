@@ -1,0 +1,33 @@
+syntax = "proto3";
+package an_gpon_olt_transceivers;
+option go_package = "./v1";
+message GponOltTransceivers {
+    message GponOltTransceiver {
+        //�˿�ID���ƣ���ʽ��Gpon.f.s.p
+        string name = 1 [json_name = "name"];
+        //��ģ���¶ȣ���λ0.01��
+        int32 temperature = 2 [json_name = "temperature"];
+        //��ģ�鹩���ѹ�� ��λ0.01V
+        int32 supply_voltage = 3 [json_name = "supply-voltage"];
+        //ͨ��1����
+        int32 channel_1_type = 4 [json_name = "channel-0-type"];
+        //ͨ��1����ƫ�õ�������λ0.01mA
+        int32 channel_1_tx_bias = 5 [json_name = "channel-0-tx-bias"];
+        //ͨ��1���͹��ʣ���λ0.01dBm��
+        int32 channel_1_tx_power = 6 [json_name = "channel-0-tx-power"];
+        //ͨ��1����ʱ�̵Ĺ⹦�ʣ���λ0.01dBm
+        int32 channel_1_idle_rssi = 7 [json_name = "channel-0-idle-rssi"];
+        //ͨ��2����
+        int32 channel_2_type = 8 [json_name = "channel-1-type"];
+        //ͨ��2����ƫ�õ�������λ0.01mA
+        int32 channel_2_tx_bias = 9 [json_name = "channel-1-tx-bias"];
+        //ͨ��2���͹��ʣ���λ0.01dBm
+        int32 channel_2_tx_power = 10 [json_name = "channel-1-tx-power"];
+        //ͨ��2����ʱ�̵Ĺ⹦�ʣ���λ0.01dBm
+        int32 channel_2_idle_rssi = 11 [json_name = "channel-1-idle-rssi"];
+        //��ģ������,0:unknown,1:gpon,2:xg-pon,3:xgs-pon,4:gpon-and-xgpon,5:gpon-and-xgspon,-1:invalid
+        int32 module_type = 12 [json_name = "module-type"];
+        string module_sub_type = 13 [json_name = "module-sub-type"];
+    }
+    repeated GponOltTransceiver gpon_olt_transceiver = 1 [json_name = "gpon-pm-olt-transceiver"];
+}

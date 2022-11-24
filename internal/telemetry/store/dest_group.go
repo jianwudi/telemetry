@@ -118,7 +118,7 @@ func (t *DestGroupTable) GetNextRecord(val *DestGroupEntry) (*DestGroupEntry, er
 				break
 			}
 		} else {
-			break
+			return curRecP.value, nil
 		}
 	}
 	return nil, errors.New("DestGroupTable GetNextRecord fail")

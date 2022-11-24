@@ -1,0 +1,34 @@
+syntax = "proto3";
+package an_bb_service_flow_kpi;
+option go_package = "./v1";
+message ServiceFlowKpiRecords {
+    message ServiceFlowKpiRecord {
+        //vlan id
+        uint32 name = 1 [json_name = "name"];
+        //���з�����ж���������
+        uint64 downstream_queue_drop_cnt = 2 [json_name = "downstream-queue-drop-cnt"];
+        //���з��������ͨ�����ܰ�����
+        uint64 downstream_queue_pass_cnt = 3 [json_name = "downstream-queue-pass-cnt"];
+        //���з�������뼶�����������
+        uint32 downstream_queue_drop_max = 4 [json_name = "downstream-queue-drop-max"];
+        //���з�������뼶������С����
+        uint32 downstream_queue_drop_min = 5 [json_name = "downstream-queue-drop-min"];
+        //���з�������뼶������󶪰��ʡ�����󶪰���ʱ���Ӧ��ϵ����λ10^-5��
+        uint32 downstream_queue_drop_rate_max = 6 [json_name = "downstream-queue-drop-rate-max"];
+        //���з�������뼶������С�����ʡ�����С������ʱ���Ӧ��ϵ����λ10^-5��
+        uint32 downstream_queue_drop_rate_min = 7 [json_name = "downstream-queue-drop-rate-min"];
+        //���з�����з����������������ۼӡ�
+        uint32 downstream_queue_drop_seconds_cnt = 8 [json_name = "downstream-queue-drop-seconds-cnt"];
+        //���з������ͨ�����ֽ�����
+        uint64 downstream_queue_pass_bytes = 9 [json_name = "downstream-queue-pass-bytes"];
+        //ͳ�������ڣ����з���ƽ�����ʡ���λkbps��
+        uint32 downstream_mfr_avg = 10 [json_name = "downstream-mfr-avg"];
+        //���з���ͨ�����ֽ���
+        uint64 upstream_pass_bytes = 11 [json_name = "upstream-pass-bytes"];
+        //���з���ͨ�����ܰ���
+        uint64 upstream_pass_cnt = 12 [json_name = "upstream-pass-cnt"];
+        //���з��򶪰�����
+        uint64 upstream_drop_cnt = 13 [json_name = "upstream-drop-cnt"];
+    }
+    repeated ServiceFlowKpiRecord service_flow_kpi_record = 1 [json_name = "service-flow-kpi-record"];
+}

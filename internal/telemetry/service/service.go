@@ -1,6 +1,8 @@
 package service
 
-import "telemetry/internal/telemetry/store"
+import (
+	"telemetry/internal/telemetry/store"
+)
 
 type Service interface {
 	SensorGroup() SensorGroupSrv

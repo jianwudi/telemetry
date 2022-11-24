@@ -23,20 +23,16 @@ func NewSensorDataService(s *service) *sensorDataService {
 func (s *sensorDataService) GetALL() error {
 	sensordata, err := s.db.SensorData().GetFirstRecord()
 	if err != nil {
+		log.Infof("sensorDataService get first fail")
 		return nil
 	}
-	log.Infof("sensorgrp:%v", sensordata)
-	for _, data := range sensordata.Data {
-		log.Infof("sensorgrp:%+v", data)
-	}
+	log.Infof("sensorgrp:%+v", sensordata)
+
 	for {
-		sensordata, err := s.db.SensorData().GetNextRecord(sensordata)
+		sensordata, err = s.db.SensorData().GetNextRecord(sensordata)
 		if err != nil {
 			return nil
 		}
-		log.Infof("sensorgrp:%v", sensordata)
-		for _, data := range sensordata.Data {
-			log.Infof("sensorgrp:%+v", data)
-		}
+		log.Infof("sensorgrp1:%+v", sensordata)
 	}
 }
